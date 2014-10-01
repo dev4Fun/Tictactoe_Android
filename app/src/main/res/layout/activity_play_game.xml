@@ -1,0 +1,91 @@
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:text="Whose turn is now"
+            android:id="@+id/playerTurn" />
+
+        </TableRow>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:weightSum="1">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableRow1">
+
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/cellStyle"/>
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/cellStyle"/>
+            <TextView
+                android:id="@+id/textView3"
+                style="@style/cellStyle"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableRow2">
+
+            <TextView
+                android:id="@+id/textView4"
+                style="@style/cellStyle"/>
+            <TextView
+                android:id="@+id/textView5"
+                style="@style/cellStyle"/>
+            <TextView
+                android:id="@+id/textView6"
+                style="@style/cellStyle"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableRow3">
+
+            <TextView
+                android:id="@+id/textView7"
+                style="@style/cellStyle"/>
+            <TextView
+                android:id="@+id/textView8"
+                style="@style/cellStyle"/>
+
+            <TextView
+                android:id="@+id/textView9"
+                style="@style/cellStyle"/>
+        </TableRow>
+
+        <Button
+            android:layout_width="229dp"
+            android:layout_height="75dp"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:layout_margin="75dp"
+            android:text="@string/back_btn"
+            android:id="@+id/button"
+            android:onClick="backToMenu"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
