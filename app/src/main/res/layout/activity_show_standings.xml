@@ -9,8 +9,26 @@
     tools:context="tru.avdyushkin.lab4.ShowStandingsActivity">
 
     <TextView
-        android:text="@string/hello_world"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:hint="@string/player1_label"
+        android:ems="12"
+        android:id="@+id/p1standing"
+        android:layout_marginTop="63dp"
+        android:layout_marginBottom="20dp"
+        android:maxLength="20" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:hint="@string/player2_label"
+        android:ems="12"
+        android:id="@+id/p2standing"
+        android:layout_below="@+id/p1standing"
+        android:layout_alignLeft="@+id/p1standing"
+        android:layout_alignStart="@+id/p1standing"
+        android:maxLength="20" />
 
 </RelativeLayout>

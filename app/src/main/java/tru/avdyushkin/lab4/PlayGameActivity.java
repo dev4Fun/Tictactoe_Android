@@ -21,6 +21,7 @@ public class PlayGameActivity extends Activity {
     TextView[][] cells = new TextView[3][3]; // game field 3x3
     TextView playerTurn;
     static int turn; // current turn, starts from 0
+    static boolean flipTurns;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class PlayGameActivity extends Activity {
         cells[2][2] = (TextView)findViewById(R.id.textView9);
 
         resetField();
+        flipTurns = false;
     }
 
     @Override
@@ -74,18 +76,30 @@ public class PlayGameActivity extends Activity {
     }
 
     public void placeSymbol(View v){ // handles a click on a cell
+        Log.i("MyMSG", "hi" + flipTurns);
         TextView cell = (TextView) v; // current cell being pressed
         if(cell.getText().toString().equals("")){
             // get which players turn and place X or O
 
             if(turn % 2 == 0) // player 1 turn
             {
-                cell.setText("X");
-                playerTurn.setText(p2Name + "'s turn");
+                if(!flipTurns) {
+                    cell.setText("X");
+                    playerTurn.setText(p2Name + "'s turn");
+                } else {
+                    cell.setText("O");
+                    playerTurn.setText(p1Name + "'s turn");
+                }
             }
             else {
-                cell.setText("O");
-                playerTurn.setText(p1Name + "'s turn");
+                if(!flipTurns){
+                    cell.setText("O");
+                    playerTurn.setText(p1Name + "'s turn");
+                } else {
+                    cell.setText("X");
+                    playerTurn.setText(p2Name + "'s turn");
+                }
+
             }
 
             // check for a winner
@@ -103,7 +117,11 @@ public class PlayGameActivity extends Activity {
             for(int col = 0; col < 3; col++)
                 cells[row][col].setText("");
         turn = 0;
-        playerTurn.setText(p1Name + "'s turn");
+
+        if(flipTurns)
+            playerTurn.setText(p2Name + "'s turn");
+        else
+            playerTurn.setText(p1Name + "'s turn");
     }
 
     public boolean checkForWin(){
@@ -164,8 +182,9 @@ public class PlayGameActivity extends Activity {
         SharedPreferences.Editor editor = gameStats.edit();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-
-        if(turn % 2 == 0) // player 1 win
+        if(turn == 8){
+            builder.setMessage("It is a draw");
+        } else if(turn % 2 == 0 && !flipTurns) // player 1 win
         {
             builder.setMessage(p1Name + " has won!");
             editor.putInt("Player1Wins", p1Stats++);
@@ -175,6 +194,7 @@ public class PlayGameActivity extends Activity {
             editor.putInt("Player1Wins", p2Stats++);
         }
 
+        builder.setCancelable(false);
         builder.setNegativeButton("Play One More",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -191,11 +211,12 @@ public class PlayGameActivity extends Activity {
                     }
                 });
 
+
         AlertDialog alert = builder.create();
         alert.show();
 
         editor.apply(); // save stats to pref storage
-        Log.i("MSG", "Current stats p1:" + p1Stats + " p2: " + p2Stats );
+        flipTurns = !flipTurns; // change turns
     }
 
     @Override
