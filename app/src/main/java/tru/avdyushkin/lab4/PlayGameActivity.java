@@ -76,7 +76,7 @@ public class PlayGameActivity extends Activity {
     }
 
     public void placeSymbol(View v){ // handles a click on a cell
-        Log.i("MyMSG", "hi" + flipTurns);
+        Log.i("MyMSG", "p1 stat" + p1Stats + " p2 stat" + p2Stats);
         TextView cell = (TextView) v; // current cell being pressed
         if(cell.getText().toString().equals("")){
             // get which players turn and place X or O
@@ -145,7 +145,6 @@ public class PlayGameActivity extends Activity {
          }
          if(turn == 8) {
              endGame();
-             Log.i("MyMSG","Game ended, max turns");
          }
         }
         return false;
@@ -179,7 +178,7 @@ public class PlayGameActivity extends Activity {
     }
 
     private void endGame(){
-        SharedPreferences.Editor editor = gameStats.edit();
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         if(turn == 8){
@@ -187,11 +186,11 @@ public class PlayGameActivity extends Activity {
         } else if(turn % 2 == 0 && !flipTurns) // player 1 win
         {
             builder.setMessage(p1Name + " has won!");
-            editor.putInt("Player1Wins", p1Stats++);
+            p1Stats++;
 
         } else {
             builder.setMessage(p2Name + " has won!");
-            editor.putInt("Player1Wins", p2Stats++);
+            p2Stats++;
         }
 
         builder.setCancelable(false);
@@ -211,11 +210,8 @@ public class PlayGameActivity extends Activity {
                     }
                 });
 
-
         AlertDialog alert = builder.create();
         alert.show();
-
-        editor.apply(); // save stats to pref storage
         flipTurns = !flipTurns; // change turns
     }
 
@@ -223,5 +219,14 @@ public class PlayGameActivity extends Activity {
     protected void onStop() {
         finish();
         super.onStop();
+    }
+
+    @Override
+    protected void onPause() {
+        SharedPreferences.Editor editor = gameStats.edit();
+        editor.putInt("Player1Wins", p1Stats);
+        editor.putInt("Player2Wins", p2Stats);
+        editor.apply(); // save stats to pref storage
+        super.onPause();
     }
 }

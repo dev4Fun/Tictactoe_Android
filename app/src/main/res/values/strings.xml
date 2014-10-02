@@ -8,9 +8,10 @@
     <string name="player1_label">Player1 Name</string>
     <string name="player2_label">Player2 Name</string>
     <string name="save_btn">Save</string>
+    <string name="reset_btn">Reset Stats</string>
     <string name="title_activity_play_game">PlayGameActivity</string>
     <string name="title_activity_show_standings">ShowStandingsActivity</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="back_btn">Back to menu</string>
+    <string name="back_btn">Back to Menu</string>
 
 </resources>

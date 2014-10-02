@@ -13,22 +13,41 @@
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:hint="@string/player1_label"
-        android:ems="12"
         android:id="@+id/p1standing"
         android:layout_marginTop="63dp"
-        android:layout_marginBottom="20dp"
-        android:maxLength="20" />
+        android:layout_marginBottom="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:hint="@string/player2_label"
-        android:ems="12"
         android:id="@+id/p2standing"
         android:layout_below="@+id/p1standing"
         android:layout_alignLeft="@+id/p1standing"
-        android:layout_alignStart="@+id/p1standing"
-        android:maxLength="20" />
+        android:layout_alignStart="@+id/p1standing"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/reset_btn"
+        android:textSize="35sp"
+        android:id="@+id/reset_btn"
+        android:layout_below="@+id/p2standing"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="reset_stats"
+        android:layout_marginTop="58dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back_btn"
+        android:textSize="35sp"
+        android:id="@+id/back_btn"
+        android:onClick="back"
+        android:layout_alignTop="@+id/reset_btn"
+        android:layout_toRightOf="@+id/reset_btn"
+        android:layout_toEndOf="@+id/reset_btn" />
 
 </RelativeLayout>
